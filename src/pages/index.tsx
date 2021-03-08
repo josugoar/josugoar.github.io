@@ -11,34 +11,40 @@ type IndexPageProps = {
   }
 }
 
-const IndexPage = (props: IndexPageProps) => {
-  return (
-    <main>
-      <title>
-        {props.data.github.viewer.login}{" "}
-        {props.data.github.viewer.name && `(${props.data.github.viewer.name})`}
-      </title>
-      <div
-        className="border-bottom border-gray-light"
-        style={{ backgroundColor: "#fcfdfd" }}
-      >
-        <div className="container-xl p-responsive">
-          <div className="d-md-flex flex-wrap flex-lg-nowrap gutter-md">
-            <User
-              avatarUrl={props.data.github.viewer.avatarUrl}
-              bio={props.data.github.viewer.bio}
-              login={props.data.github.viewer.login}
-              name={props.data.github.viewer.name}
-              url={props.data.github.viewer.url}
-            />
-            <PinnableItemConnection
-              nodes={props.data.github.viewer.pinnedItems.nodes}
-            />
+class IndexPage extends React.Component<IndexPageProps> {
+  componentDidMount() {
+    if (this.props.data.github.viewer.name) {
+      document.title = `${this.props.data.github.viewer.login} (${this.props.data.github.viewer.name})`
+    } else {
+      document.title = this.props.data.github.viewer.login
+    }
+  }
+
+  render() {
+    return (
+      <main>
+        <div
+          className="border-bottom border-gray-light"
+          style={{ backgroundColor: "#fcfdfd" }}
+        >
+          <div className="container-xl p-responsive">
+            <div className="d-md-flex flex-wrap flex-lg-nowrap gutter-md">
+              <User
+                avatarUrl={this.props.data.github.viewer.avatarUrl}
+                bio={this.props.data.github.viewer.bio}
+                login={this.props.data.github.viewer.login}
+                name={this.props.data.github.viewer.name}
+                url={this.props.data.github.viewer.url}
+              />
+              <PinnableItemConnection
+                nodes={this.props.data.github.viewer.pinnedItems.nodes}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-  )
+      </main>
+    )
+  }
 }
 
 export default IndexPage
