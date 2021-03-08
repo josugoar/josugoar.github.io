@@ -1,5 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
+import { PinnableItemConnectionProps } from "./pinnableItemConnection"
 import UserContent from "./userContent"
 import UserHeader from "./userHeader"
 
@@ -8,6 +9,7 @@ export type UserProps = {
   bio: string | null
   login: string
   name: string | null
+  pinnedItems?: PinnableItemConnectionProps
   url: string
 }
 

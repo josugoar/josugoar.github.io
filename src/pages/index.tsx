@@ -1,15 +1,12 @@
 import { graphql } from "gatsby"
 import React from "react"
-import PinnableItemConnection, {
-  PinnableItemConnectionProps,
-} from "../components/pinnableItemConnection"
+import PinnableItemConnection from "../components/pinnableItemConnection"
 import User, { UserProps } from "../components/user"
 
 type IndexPageProps = {
   data: {
     github: {
       viewer: UserProps
-      pinnedItems: PinnableItemConnectionProps
     }
   }
 }
@@ -17,6 +14,10 @@ type IndexPageProps = {
 const IndexPage = (props: IndexPageProps) => {
   return (
     <main>
+      <title>
+        {props.data.github.viewer.login}{" "}
+        {props.data.github.viewer.name && `(${props.data.github.viewer.name})`}
+      </title>
       <div
         className="border-bottom border-gray-light"
         style={{ backgroundColor: "#fcfdfd" }}
@@ -28,7 +29,6 @@ const IndexPage = (props: IndexPageProps) => {
               bio={props.data.github.viewer.bio}
               login={props.data.github.viewer.login}
               name={props.data.github.viewer.name}
-              pinnedItems={props.data.github.viewer.pinnedItems}
               url={props.data.github.viewer.url}
             />
             <PinnableItemConnection
