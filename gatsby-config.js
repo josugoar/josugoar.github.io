@@ -3,10 +3,6 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 module.exports = {
-  siteMetadata: {
-    siteUrl: "https://josugoar.github.io",
-    title: "josugoar (Josu)",
-  },
   plugins: [
     "gatsby-plugin-sass",
     {
