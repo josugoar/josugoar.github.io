@@ -1,10 +1,16 @@
 {
   "name": "josugoar.github.io",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "description": "josugoar.github.io",
   "author": "Josu",
   "keywords": [
+    "react",
+    "javascript",
+    "primer",
+    "typescript",
+    "gh-pages",
+    "gatsby",
     "gatsby"
   ],
   "scripts": {
@@ -13,7 +19,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy": "gh-pages --dist public --branch master"
+    "deploy": "gh-pages --dist public"
   },
   "dependencies": {
     "@primer/css": "^15.2.0",
