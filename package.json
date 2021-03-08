@@ -1,0 +1,37 @@
+{
+  "name": "josugoar.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "josugoar.github.io",
+  "author": "Josu",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "deploy": "gh-pages --dist public --branch master"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "gatsby": "^2.32.3",
+    "gatsby-source-graphql": "^2.14.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "gh-pages": "^3.1.0",
+    "prettier": "^2.2.1"
+  }
+}
