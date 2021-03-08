@@ -1,21 +1,9 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  makeStyles,
-  Typography,
-} from "@material-ui/core"
+import { graphql } from "gatsby"
 import React from "react"
+import UserContent from "./userContent"
+import UserHeader from "./userHeader"
 
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-  },
-})
-
-type UserProps = {
+export type UserProps = {
   avatarUrl: string
   bio: string | null
   login: string
@@ -24,33 +12,32 @@ type UserProps = {
 }
 
 const User = (props: UserProps) => {
-  const classes = useStyles()
-
   return (
-    <Card className={classes.root} elevation={0}>
-      <CardHeader avatar={<Avatar alt={props.login} src={props.avatarUrl} />} />
-      <CardContent>
-        <Typography component="h2" variant="h5">
-          {props.name}
-        </Typography>
-        <Typography color="textSecondary" component="p" variant="body2">
-          {props.bio}
-        </Typography>
-      </CardContent>
-    </Card>
+    <div
+      className="flex-shrink-0 col-12 col-md-3 mb-4 mb-md-0 pt-4 position-md-sticky"
+      style={{ height: "100%", top: 0 }}
+    >
+      <div className="h-card" itemScope itemType="http://schema.org/Person">
+        <UserHeader
+          avatarUrl={props.avatarUrl}
+          login={props.login}
+          name={props.name}
+          url={props.url}
+        />
+        <UserContent bio={props.bio} />
+      </div>
+    </div>
   )
 }
 
 export default User
 
-// export const query = graphql`
-//   fragment UserFragment {
-//     user(login: $login) {
-//       avatarUrl
-//       bio
-//       login
-//       name
-//       url
-//     }
-//   }
-// `
+export const query = graphql`
+  fragment UserFragment on GitHub_User {
+    avatarUrl
+    bio
+    login
+    name
+    url
+  }
+`
