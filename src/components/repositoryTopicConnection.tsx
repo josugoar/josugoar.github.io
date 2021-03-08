@@ -1,37 +1,27 @@
-import { Box, createStyles, makeStyles, Paper } from "@material-ui/core"
+import { graphql } from "gatsby"
 import React from "react"
 import RepositoryTopic, { RepositoryTopicProps } from "./repositoryTopic"
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      display: "flex",
-      justifyContent: "center",
-      flexWrap: "wrap",
-      listStyle: "none",
-      padding: theme.spacing(0.5),
-      margin: 0,
-    },
-  })
-)
 
 export type RepositoryTopicConnectionProps = {
   nodes: RepositoryTopicProps[]
 }
 
 const RepositoryTopicConnection = (props: RepositoryTopicConnectionProps) => {
-  const classes = useStyles()
-
   return (
-    <ul className={classes.root}>
-      {props.nodes.map((repositoryTopic) => (
-        <RepositoryTopic
-          id={repositoryTopic.id}
-          topic={repositoryTopic.topic}
-        />
+    <div className="d-flex flex-wrap border-bottom border-gray-light px-3 pt-2 pb-2">
+      {props.nodes.map((node, idx) => (
+        <RepositoryTopic key={idx} topic={node.topic} />
       ))}
-    </ul>
+    </div>
   )
 }
 
 export default RepositoryTopicConnection
+
+export const query = graphql`
+  fragment RepositoryTopicConnectionFragment on GitHub_RepositoryTopicConnection {
+    nodes {
+      ...RepositoryTopicFragment
+    }
+  }
+`
