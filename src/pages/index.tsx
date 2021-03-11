@@ -52,10 +52,10 @@ export const query = graphql`
   query IndexPageQuery {
     github {
       viewer {
-        ...UserFragment
         pinnedItems(first: 6) {
           ...PinnableItemConnectionFragment
         }
+        ...UserFragment
       }
     }
   }

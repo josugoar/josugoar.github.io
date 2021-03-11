@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
 
-export type RepositoryTopicProps = {
+export interface RepositoryTopicProps {
   topic: {
     name: string
   }

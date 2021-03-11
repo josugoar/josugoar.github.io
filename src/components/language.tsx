@@ -8,10 +8,7 @@ export interface LanguageProps {
 
 const Language = ({ color, name }: LanguageProps) => (
   <span className="f6 my-1 ml-0">
-    <span
-      className="repo-language-color"
-      style={{ backgroundColor: color }}
-    />{" "}
+    <span className="repo-language-color" style={{ backgroundColor: color }} />{" "}
     <span itemProp="programmingLanguage">{name}</span>
   </span>
 )
