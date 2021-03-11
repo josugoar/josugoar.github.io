@@ -1,36 +1,84 @@
 import { graphql } from "gatsby"
 import React from "react"
-import { PinnableItemConnectionProps } from "./pinnableItemConnection"
-import UserContent from "./userContent"
-import UserHeader from "./userHeader"
 
-export type UserProps = {
+interface UserAvatarProps {
   avatarUrl: string
-  bio: string | null
   login: string
-  name: string | null
-  pinnedItems?: PinnableItemConnectionProps
   url: string
 }
 
-const User = (props: UserProps) => {
-  return (
-    <div
-      className="flex-shrink-0 col-12 col-md-3 mb-4 mb-md-0 pt-4 position-md-sticky"
-      style={{ height: "100%", top: 0 }}
+const UserAvatar = ({ avatarUrl, login, url }: UserAvatarProps) => (
+  <div
+    className="position-relative d-inline-block col-2 col-md-12 mr-3 mr-md-0 flex-shrink-0"
+    style={{ zIndex: 4 }}
+  >
+    <a
+      className="tooltipped tooltipped-s d-block"
+      aria-label={login}
+      href={url}
     >
-      <div className="h-card" itemScope itemType="http://schema.org/Person">
-        <UserHeader
-          avatarUrl={props.avatarUrl}
-          login={props.login}
-          name={props.name}
-          url={props.url}
-        />
-        <UserContent bio={props.bio} />
-      </div>
-    </div>
-  )
+      <img
+        style={{ height: "auto" }}
+        alt={login}
+        className="avatar avatar-user width-full border bg-white"
+        src={avatarUrl}
+        width="260"
+        height="260"
+      />
+    </a>
+  </div>
+)
+
+interface UserContentProps {
+  bio: string | null
 }
+
+const UserContent = ({ bio }: UserContentProps) => (
+  <div className="p-note user-profile-bio f4">
+    <div>{bio}</div>
+  </div>
+)
+
+interface UserHeaderProps {
+  login: string
+  name: string | null
+}
+
+const UserHeader = ({ login, name }: UserHeaderProps) => (
+  <div
+    className="vcard-names-container float-left col-10 col-md-12 pt-1 pt-md-3 pb-1 pb-md-3"
+    style={{ position: "sticky" }}
+  >
+    <h1 className="vcard-names pl-2 pl-md-0">
+      <span className="vcard-fullname d-block overflow-hidden" itemProp="name">
+        {name}
+      </span>
+      <span className="vcard-username d-block" itemProp="additionalName">
+        {login}
+      </span>
+    </h1>
+  </div>
+)
+
+export interface UserProps
+  extends UserAvatarProps,
+    UserContentProps,
+    UserHeaderProps {}
+
+const User = ({ avatarUrl, bio, login, name, url }: UserProps) => (
+  <div
+    className="flex-shrink-0 col-12 col-md-3 pt-4 position-md-sticky"
+    style={{ height: "100%", top: 0 }}
+  >
+    <div className="h-card" itemScope itemType="http://schema.org/Person">
+      <div className="clearfix d-flex d-md-block flex-items-center mb-4 mb-md-0">
+        <UserAvatar avatarUrl={avatarUrl} login={login} url={url} />
+        <UserHeader login={login} name={name} />
+      </div>
+      <UserContent bio={bio} />
+    </div>
+  </div>
+)
 
 export default User
 
