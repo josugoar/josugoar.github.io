@@ -1,7 +1,7 @@
 import React from "react"
 
-const NotFoundPage = () => {
-  return (
+const NotFoundPage = () => (
+  <main>
     <div
       style={{
         alignItems: "center",
@@ -11,11 +11,11 @@ const NotFoundPage = () => {
         justifyContent: "center",
       }}
     >
-      <title>404: Not Found...</title>
+      <title>Page not found</title>
       <h1 style={{ fontSize: 128 }}>404</h1>
-      <p style={{ fontSize: 16 }}>Not Found...</p>
+      <p style={{ fontSize: 16 }}>Page not found</p>
     </div>
-  )
-}
+  </main>
+)
 
 export default NotFoundPage
