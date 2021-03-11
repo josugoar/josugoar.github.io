@@ -7,13 +7,11 @@ export type RepositoryTopicProps = {
   }
 }
 
-const RepositoryTopic = (props: RepositoryTopicProps) => {
-  return (
-    <span className="topic-tag f6 mb-2" title={`Topic: ${props.topic.name}`}>
-      {props.topic.name}
-    </span>
-  )
-}
+const RepositoryTopic = ({ topic: { name } }: RepositoryTopicProps) => (
+  <span className="topic-tag f6 mb-2" title={`Topic: ${name}`}>
+    {name}
+  </span>
+)
 
 export default RepositoryTopic
 
