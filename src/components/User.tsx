@@ -16,11 +16,13 @@ const UserAvatar = ({ avatarUrl, login, url }: UserAvatarProps) => (
       className="tooltipped tooltipped-s d-block"
       aria-label={login}
       href={url}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       <img
+        className="avatar avatar-user width-full border bg-white"
         style={{ height: "auto" }}
         alt={login}
-        className="avatar avatar-user width-full border bg-white"
         src={avatarUrl}
         width="260"
         height="260"
@@ -34,8 +36,12 @@ interface UserContentProps {
 }
 
 const UserContent = ({ bio }: UserContentProps) => (
-  <div className="p-note user-profile-bio f4">
-    <div>{bio}</div>
+  <div className="d-flex flex-column">
+    <div className="d-flex flex-column d-md-block">
+      <div className="user-profile-bio f4">
+        <div>{bio}</div>
+      </div>
+    </div>
   </div>
 )
 

@@ -1,12 +1,8 @@
 import { code, repo } from "@primer/octicons"
 import { graphql } from "gatsby"
 import React from "react"
-import LanguageConnection, {
-  LanguageConnectionProps,
-} from "./languageConnection"
-import RepositoryTopicConnection, {
-  RepositoryTopicConnectionProps,
-} from "./repositoryTopicConnection"
+import LanguageConnection, { LanguageConnectionProps } from "./LanguageConnection"
+import RepositoryTopicConnection, { RepositoryTopicConnectionProps } from "./RepositoryTopicConnection"
 
 interface RepositoryActionsProps {
   url: string
@@ -15,7 +11,13 @@ interface RepositoryActionsProps {
 const RepositoryActions = ({ url }: RepositoryActionsProps) => (
   <div className="tabnav px-3 mb-0">
     <nav className="tabnav-tabs" aria-label="Repository menu">
-      <a aria-current="true" href={url} className="tabnav-tab f6 px-2 py-1">
+      <a
+        aria-current="true"
+        href={url}
+        className="tabnav-tab f6 px-2 py-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <span
           dangerouslySetInnerHTML={{
             __html: code.toSVG({ class: "text-gray-dark" }),
@@ -65,7 +67,12 @@ const RepositoryHeader = ({ name, url }: RepositoryHeaderProps) => (
           style={{ marginTop: 2 }}
         />
         <h1 className="f3 text-gray text-normal lh-condensed">
-          <a className="text-bold" href={url}>
+          <a
+            className="text-bold"
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {name}
           </a>
         </h1>
@@ -89,6 +96,8 @@ const RepositoryMedia = ({
     className="overflow-hidden flex-items-center rounded-top-1 border-black-fade border-bottom d-flex position-relative"
     style={{ maxHeight: 275 }}
     href={url}
+    target="_blank"
+    rel="noopener noreferrer"
   >
     <img
       className="d-block width-full"
@@ -139,7 +148,7 @@ export default Repository
 export const query = graphql`
   fragment RepositoryFragment on GitHub_Repository {
     description
-    languages(first: 10) {
+    languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
       ...LanguageConnectionFragment
     }
     name

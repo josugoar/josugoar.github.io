@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
-import Repository, { RepositoryProps } from "./repository"
+import Repository, { RepositoryProps } from "./Repository"
 
 interface RepositoryNodeProps extends RepositoryProps {
   id: string
@@ -11,18 +11,9 @@ export interface PinnableItemConnectionProps {
 }
 
 const PinnableItemConnection = ({ nodes }: PinnableItemConnectionProps) => (
-  <div className="col-md-8 col-lg-7 py-4" style={{ margin: "0 auto" }}>
-    {nodes.map((node) => (
-      <Repository
-        description={node.description}
-        key={node.id}
-        languages={node.languages}
-        name={node.name}
-        openGraphImageUrl={node.openGraphImageUrl}
-        repositoryTopics={node.repositoryTopics}
-        url={node.url}
-        usesCustomOpenGraphImage={node.usesCustomOpenGraphImage}
-      />
+  <div className="col-md-8 col-lg-7 py-4" style={{ margin: "auto" }}>
+    {nodes.map(({ id, ...node }) => (
+      <Repository key={id} {...node} />
     ))}
   </div>
 )
