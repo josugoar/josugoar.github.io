@@ -1,12 +1,8 @@
 .topic-tag {
   display: inline-block;
-  margin: 0 0.125em 0.333em 0;
+  padding: 0.3em 0.9em;
+  margin: 0 0.5em 0.5em 0;
   white-space: nowrap;
-  font-size: 12px;
-  font-weight: 500;
-  border: 1px solid transparent;
-  border-radius: 2em;
-  padding: 0 10px;
-  line-height: 22px;
   background-color: $bg-blue-light;
+  border-radius: 6px;
 }
