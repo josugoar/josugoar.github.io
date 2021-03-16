@@ -20,6 +20,7 @@ const RepositoryActions = ({ url }: RepositoryActionsProps) => (
       >
         <span
           dangerouslySetInnerHTML={{
+            // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
             __html: code.toSVG({ class: "text-gray-dark" }),
           }}
         />{" "}
@@ -62,6 +63,7 @@ const RepositoryHeader = ({ name, url }: RepositoryHeaderProps) => (
       <div className="d-flex flex-auto">
         <span
           dangerouslySetInnerHTML={{
+            // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
             __html: repo.toSVG({ class: "text-gray-dark mr-2" }),
           }}
           style={{ marginTop: 2 }}
