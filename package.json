@@ -1,6 +1,7 @@
 {
   "name": "josugoar.github.io",
   "version": "2.0.0",
+  "private": true,
   "keywords": [
     "eslint",
     "gatsby",
@@ -50,6 +51,5 @@
     "eslint-plugin-react": "^7.22.0",
     "gh-pages": "^3.1.0",
     "prettier": "^2.2.1"
-  },
-  "private": true
+  }
 }
