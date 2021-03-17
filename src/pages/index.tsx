@@ -1,6 +1,8 @@
 import { graphql } from "gatsby"
 import React, { useEffect } from "react"
-import PinnableItemConnection, { PinnableItemConnectionProps } from "../components/PinnableItemConnection"
+import PinnableItemConnection, {
+  PinnableItemConnectionProps,
+} from "../components/PinnableItemConnection"
 import User, { UserProps } from "../components/User"
 
 interface ViewerProps extends UserProps {
@@ -15,32 +17,29 @@ interface IndexPageProps {
   }
 }
 
-const IndexPage = ({ data: { github: { viewer }} }: IndexPageProps) => {
-  useEffect(() => {
-    document.title = viewer.name
-      ? `${viewer.login} (${viewer.name})`
-      : viewer.login
-  }, [])
-
-  return (
-    <main>
-      <div className="container-xl px-3 px-md-4 px-lg-5">
-        <div className="gutter-condensed gutter-lg flex-column flex-md-row d-flex">
-          <User
-            avatarUrl={viewer.avatarUrl}
-            bio={viewer.bio}
-            login={viewer.login}
-            name={viewer.name}
-            url={viewer.url}
-          />
-          <PinnableItemConnection
-            nodes={viewer.pinnedItems.nodes}
-          />
-        </div>
+const IndexPage = ({
+  data: {
+    github: { viewer },
+  },
+}: IndexPageProps) => (
+  <main>
+    <title>
+      {viewer.name ? `${viewer.login} (${viewer.name})` : viewer.login}
+    </title>
+    <div className="container-xl px-3 px-md-4 px-lg-5">
+      <div className="gutter-condensed gutter-lg flex-column flex-md-row d-flex">
+        <User
+          avatarUrl={viewer.avatarUrl}
+          bio={viewer.bio}
+          login={viewer.login}
+          name={viewer.name}
+          url={viewer.url}
+        />
+        <PinnableItemConnection nodes={viewer.pinnedItems.nodes} />
       </div>
-    </main>
-  )
-}
+    </div>
+  </main>
+)
 
 export default IndexPage
 
