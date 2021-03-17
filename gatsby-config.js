@@ -15,26 +15,6 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        // TODO: Generate name automatically
-        // TODO: Add leftover fields
-        name: "josugoar.github.io",
-        start_url: "/",
-        icon: "./src/images/icon.png",
-        cache_busting_mode: "none",
-      },
-    },
-    {
-      resolve: "gatsby-plugin-offline",
-      options: {
-        workboxConfig: {
-          // TODO: Ensure correct path
-          globPatterns: ["**/icon.png"],
-        },
-      },
-    },
     "gatsby-plugin-sass",
   ],
 }
