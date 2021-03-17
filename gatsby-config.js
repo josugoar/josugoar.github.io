@@ -1,6 +1,6 @@
-const dotenv = require("dotenv")
+const { config } = require("dotenv")
 
-dotenv.config()
+config()
 
 module.exports = {
   plugins: [
