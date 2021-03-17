@@ -10,7 +10,9 @@ export interface RepositoryTopicConnectionProps {
   nodes: RepositoryTopicNodeProps[]
 }
 
-const RepositoryTopicConnection = ({ nodes }: RepositoryTopicConnectionProps) => (
+const RepositoryTopicConnection = ({
+  nodes,
+}: RepositoryTopicConnectionProps) => (
   <div className="d-flex flex-wrap border-bottom border-gray-light px-3 pt-2 pb-2">
     {nodes.map(({ id, ...node }) => (
       <RepositoryTopic key={id} {...node} />

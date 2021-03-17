@@ -1,120 +1,20 @@
 import { code, repo } from "@primer/octicons"
 import { graphql } from "gatsby"
 import React from "react"
-import LanguageConnection, { LanguageConnectionProps } from "./LanguageConnection"
-import RepositoryTopicConnection, { RepositoryTopicConnectionProps } from "./RepositoryTopicConnection"
+import LanguageConnection, {
+  LanguageConnectionProps,
+} from "./LanguageConnection"
+import RepositoryTopicConnection, {
+  RepositoryTopicConnectionProps,
+} from "./RepositoryTopicConnection"
 
-interface RepositoryActionsProps {
-  url: string
-}
-
-const RepositoryActions = ({ url }: RepositoryActionsProps) => (
-  <div className="tabnav px-3 mb-0">
-    <nav className="tabnav-tabs" aria-label="Repository menu">
-      <a
-        aria-current="true"
-        href={url}
-        className="tabnav-tab f6 px-2 py-1"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span
-          dangerouslySetInnerHTML={{
-            // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
-            __html: code.toSVG({ class: "text-gray-dark" }),
-          }}
-        />{" "}
-        Code
-      </a>
-    </nav>
-  </div>
-)
-
-interface RepositoryContentProps {
+export interface RepositoryProps {
   description: string | null
   languages: LanguageConnectionProps
-  repositoryTopics: RepositoryTopicConnectionProps
-}
-
-const RepositoryContent = ({
-  description,
-  languages,
-  repositoryTopics,
-}: RepositoryContentProps) => (
-  <div className="border-bottom bg-white">
-    <div className="px-3 pt-3">
-      <p className="text-gray mb-0" />
-      <div>{description}</div>
-      <p />
-    </div>
-    <RepositoryTopicConnection nodes={repositoryTopics.nodes} />
-    <LanguageConnection nodes={languages.nodes} />
-  </div>
-)
-
-interface RepositoryHeaderProps {
-  name: string
-  url: string
-}
-
-const RepositoryHeader = ({ name, url }: RepositoryHeaderProps) => (
-  <div className="px-3">
-    <div className="d-flex flex-justify-between my-3">
-      <div className="d-flex flex-auto">
-        <span
-          dangerouslySetInnerHTML={{
-            // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
-            __html: repo.toSVG({ class: "text-gray-dark mr-2" }),
-          }}
-          style={{ marginTop: 2 }}
-        />
-        <h1 className="f3 text-gray text-normal lh-condensed">
-          <a
-            className="text-bold"
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {name}
-          </a>
-        </h1>
-      </div>
-    </div>
-  </div>
-)
-
-interface RepositoryMediaProps {
   name: string
   openGraphImageUrl: string
+  repositoryTopics: RepositoryTopicConnectionProps
   url: string
-}
-
-const RepositoryMedia = ({
-  name,
-  openGraphImageUrl,
-  url,
-}: RepositoryMediaProps) => (
-  <a
-    className="overflow-hidden flex-items-center rounded-top-1 border-black-fade border-bottom d-flex position-relative"
-    style={{ maxHeight: 275 }}
-    href={url}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img
-      className="d-block width-full"
-      loading="lazy"
-      src={openGraphImageUrl}
-      alt={name}
-    />
-  </a>
-)
-
-export interface RepositoryProps
-  extends RepositoryActionsProps,
-    RepositoryContentProps,
-    RepositoryHeaderProps,
-    RepositoryMediaProps {
   usesCustomOpenGraphImage: boolean
 }
 
@@ -129,19 +29,72 @@ const Repository = ({
 }: RepositoryProps) => (
   <article className="border rounded-1 box-shadow bg-gray-light mb-4">
     {usesCustomOpenGraphImage && (
-      <RepositoryMedia
-        name={name}
-        openGraphImageUrl={openGraphImageUrl}
-        url={url}
-      />
+      <a
+        className="overflow-hidden flex-items-center rounded-top-1 border-black-fade border-bottom d-flex position-relative"
+        style={{ maxHeight: 275 }}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          className="d-block width-full"
+          loading="lazy"
+          src={openGraphImageUrl}
+          alt={name}
+        />
+      </a>
     )}
-    <RepositoryHeader name={name} url={url} />
-    <RepositoryActions url={url} />
-    <RepositoryContent
-      description={description}
-      languages={languages}
-      repositoryTopics={repositoryTopics}
-    />
+    <div className="px-3">
+      <div className="d-flex flex-justify-between my-3">
+        <div className="d-flex flex-auto">
+          <span
+            dangerouslySetInnerHTML={{
+              // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
+              __html: repo.toSVG({ class: "text-gray-dark mr-2" }),
+            }}
+            style={{ marginTop: 2 }}
+          />
+          <h1 className="f3 text-gray text-normal lh-condensed">
+            <a
+              className="text-bold"
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {name}
+            </a>
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div className="tabnav px-3 mb-0">
+      <nav className="tabnav-tabs" aria-label="Repository menu">
+        <a
+          aria-current="true"
+          href={url}
+          className="tabnav-tab f6 px-2 py-1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span
+            dangerouslySetInnerHTML={{
+              // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
+              __html: code.toSVG({ class: "text-gray-dark" }),
+            }}
+          />{" "}
+          Code
+        </a>
+      </nav>
+    </div>
+    <div className="border-bottom bg-white">
+      <div className="px-3 pt-3">
+        <p className="text-gray mb-0" />
+        <div>{description}</div>
+        <p />
+      </div>
+      <RepositoryTopicConnection nodes={repositoryTopics.nodes} />
+      <LanguageConnection nodes={languages.nodes} />
+    </div>
   </article>
 )
 
