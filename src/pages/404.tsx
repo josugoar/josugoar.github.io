@@ -11,7 +11,7 @@ const NotFoundPage = () => (
       <div
         className="position-relative d-flex my-0 mx-auto overflow-hidden"
         style={{
-          width: 940,
+          width: "100vh",
           height: "100vh",
           clear: "both",
           flexDirection: "column",
