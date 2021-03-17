@@ -1,2 +1,0 @@
-(self.webpackChunkjosugoar_github_io=self.webpackChunkjosugoar_github_io||[]).push([[218],{9786:function(e,t,n){"use strict";n.r(t);var l=n(7294);t.default=function(){return l.createElement("main",null,l.createElement("title",null,"Page not found"),l.createElement("div",{style:{alignItems:"center",display:"flex",flexDirection:"column",height:"100vh",justifyContent:"center"}},l.createElement("h1",{style:{fontSize:128}},"404"),l.createElement("p",{style:{fontSize:16}},"Page not found")))}}}]);
-//# sourceMappingURL=component---src-pages-404-tsx-a6215089882eecb2a088.js.map
