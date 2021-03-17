@@ -1,15 +1,19 @@
-const fs = require("fs")
+const { createWriteStream } = require("fs")
 const fetch = require("node-fetch")
-const stream = require("stream")
+const { pipeline } = require("stream")
+const { promisify } = require("util")
 
-const download = async (url, path, callback) => {
-  const response = await fetch(url)
-  stream.pipeline(response.body, fs.createWriteStream(path), callback)
-}
+const streamPipeline = promisify(pipeline)
 
-exports.createPages = async ({ graphql, reporter }) => {
-  const result = await graphql(`
-    query gatsbyNodeQuery {
+exports.createPages = async ({ graphql }) => {
+  const {
+    data: {
+      github: {
+        viewer: { avatarUrl },
+      },
+    },
+  } = await graphql(`
+    query {
       github {
         viewer {
           avatarUrl
@@ -17,11 +21,6 @@ exports.createPages = async ({ graphql, reporter }) => {
       }
     }
   `)
-  await download(
-    result.data.github.viewer.avatarUrl,
-    "./src/images/icon.png",
-    () => {
-      reporter.info("Hello")
-    }
-  )
+  const { body } = await fetch(avatarUrl)
+  await streamPipeline(body, createWriteStream("./static/favicon.ico"))
 }
