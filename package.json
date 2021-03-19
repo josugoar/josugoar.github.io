@@ -1,7 +1,6 @@
 {
   "name": "josugoar.github.io",
   "version": "2.0.0",
-  "private": true,
   "keywords": [
     "eslint",
     "gatsby",
@@ -12,7 +11,9 @@
     "sass",
     "typescript"
   ],
-  "homepage": ".",
+  "bugs": {
+    "url": "https://github.com/josugoar/josugoar.github.io/issues"
+  },
   "license": "GPL-3.0",
   "author": {
     "name": "josugoar",
