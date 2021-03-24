@@ -3,6 +3,18 @@ const fetch = require("node-fetch")
 const { pipeline } = require("stream")
 const { promisify } = require("util")
 
+const path = "./static/favicon.ico"
+
+const query = `
+  query {
+    github {
+      viewer {
+        avatarUrl
+      }
+    }
+  }
+`
+
 const streamPipeline = promisify(pipeline)
 
 exports.createPages = async ({ graphql }) => {
@@ -12,15 +24,7 @@ exports.createPages = async ({ graphql }) => {
         viewer: { avatarUrl },
       },
     },
-  } = await graphql(`
-    query {
-      github {
-        viewer {
-          avatarUrl
-        }
-      }
-    }
-  `)
+  } = await graphql(query)
   const { body } = await fetch(avatarUrl)
-  await streamPipeline(body, createWriteStream("./static/favicon.ico"))
+  await streamPipeline(body, createWriteStream(path))
 }
