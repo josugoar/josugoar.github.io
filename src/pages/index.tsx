@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import React, { useEffect } from "react"
+import React from "react"
 import PinnableItemConnection, {
   PinnableItemConnectionProps,
 } from "../components/PinnableItemConnection"
@@ -19,23 +19,17 @@ interface IndexPageProps {
 
 const IndexPage = ({
   data: {
-    github: { viewer },
+    github: {
+      viewer: { pinnedItems, ...user },
+    },
   },
 }: IndexPageProps) => (
   <main>
-    <title>
-      {viewer.name ? `${viewer.login} (${viewer.name})` : viewer.login}
-    </title>
+    <title>{user.name ? `${user.login} (${user.name})` : user.login}</title>
     <div className="container-xl px-3 px-md-4 px-lg-5">
       <div className="gutter-condensed gutter-lg flex-column flex-md-row d-flex">
-        <User
-          avatarUrl={viewer.avatarUrl}
-          bio={viewer.bio}
-          login={viewer.login}
-          name={viewer.name}
-          url={viewer.url}
-        />
-        <PinnableItemConnection nodes={viewer.pinnedItems.nodes} />
+        <User {...user} />
+        <PinnableItemConnection {...pinnedItems} />
       </div>
     </div>
   </main>
@@ -44,7 +38,7 @@ const IndexPage = ({
 export default IndexPage
 
 export const query = graphql`
-  query IndexPageQuery {
+  query {
     github {
       viewer {
         pinnedItems(first: 6, types: REPOSITORY) {

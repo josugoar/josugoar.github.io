@@ -92,8 +92,8 @@ const Repository = ({
         <div>{description}</div>
         <p />
       </div>
-      <RepositoryTopicConnection nodes={repositoryTopics.nodes} />
-      <LanguageConnection nodes={languages.nodes} />
+      <RepositoryTopicConnection {...repositoryTopics} />
+      <LanguageConnection {...languages} />
     </div>
   </article>
 )
