@@ -1,8 +1,11 @@
 {
   "name": "josugoar.github.io",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "keywords": [
+    "docker",
+    "es2021",
     "eslint",
+    "frontend",
     "gatsby",
     "gh-pages",
     "github-api",
@@ -14,19 +17,20 @@
     "primer",
     "react",
     "sass",
-    "typescript"
+    "typescript",
+    "webapp"
   ],
   "bugs": {
     "url": "https://github.com/josugoar/josugoar.github.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josugoar/josugoar.github.io"
   },
   "license": "GPL-3.0",
   "author": {
     "name": "josugoar",
     "url": "https://github.com/josugoar"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/josugoar/josugoar.github.io"
   },
   "scripts": {
     "develop": "gatsby develop",
@@ -36,11 +40,33 @@
     "clean": "gatsby clean",
     "deploy": "gh-pages --dist public"
   },
+  "prettier": {
+    "semi": false
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
+    ]
+  },
   "dependencies": {
     "@primer/css": "^15.2.0",
     "@primer/octicons": "^12.1.0",
     "gatsby": "^3.0.4",
-    "gatsby-plugin-offline": "^4.0.0",
     "gatsby-plugin-sass": "^4.0.2",
     "gatsby-source-graphql": "^3.0.0",
     "react": "^17.0.1",
