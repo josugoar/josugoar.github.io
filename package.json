@@ -1,12 +1,13 @@
 {
-  "name": "josugoar.github.io",
-  "version": "2.1.0",
+  "name": "gatsby-starter-github",
+  "version": "2.2.0",
   "keywords": [
     "docker",
     "es6",
     "eslint",
     "frontend",
     "gatsby",
+    "gatsby-starter",
     "gh-pages",
     "github-api",
     "graphql",
@@ -20,11 +21,11 @@
     "webapp"
   ],
   "bugs": {
-    "url": "https://github.com/josugoar/josugoar.github.io/issues"
+    "url": "https://github.com/josugoar/gatsby-starter-github/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/josugoar/josugoar.github.io"
+    "url": "https://github.com/josugoar/gatsby-starter-github"
   },
   "license": "GPL-3.0",
   "author": {
@@ -62,23 +63,23 @@
     ]
   },
   "dependencies": {
-    "@primer/css": "^15.2.0",
-    "@primer/octicons": "^12.1.0",
-    "gatsby": "^3.0.4",
-    "gatsby-plugin-sass": "^4.0.2",
-    "gatsby-source-graphql": "^3.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "sass": "^1.32.8"
+    "@primer/css": "^21.0.7",
+    "@primer/octicons": "^19.5.0",
+    "gatsby": "^5.11.0",
+    "gatsby-plugin-sass": "^6.11.0",
+    "gatsby-source-graphql": "^5.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.64.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.17.0",
-    "@typescript-eslint/parser": "^4.17.0",
-    "eslint": "^7.21.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0",
-    "gh-pages": "^3.1.0",
-    "prettier": "^2.2.1"
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.1",
+    "gh-pages": "^5.0.0",
+    "prettier": "^3.0.1"
   }
 }

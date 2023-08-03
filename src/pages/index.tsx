@@ -26,8 +26,8 @@ const IndexPage = ({
 }: IndexPageProps) => (
   <main>
     <title>{user.name ? `${user.login} (${user.name})` : user.login}</title>
-    <div className="container-xl px-3 px-md-4 px-lg-5">
-      <div className="gutter-condensed gutter-lg flex-column flex-md-row d-flex">
+    <div className="container-xl px-5 px-md-4 px-lg-5">
+      <div className="gutter-condensed flex-column flex-md-row d-flex mx-md-2 mx-lg-3">
         <User {...user} />
         <PinnableItemConnection {...pinnedItems} />
       </div>

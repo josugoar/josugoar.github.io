@@ -11,8 +11,8 @@ export interface UserProps {
 
 const User = ({ avatarUrl, bio, login, name, url }: UserProps) => (
   <div
-    className="flex-shrink-0 col-12 col-md-3 pt-4 position-md-sticky"
-    style={{ height: "100%", top: 0 }}
+    className="flex-shrink-0 col-12 col-md-3 pt-4 position-md-sticky user-profile"
+    style={{ top: 0 }}
   >
     <div itemScope itemType="http://schema.org/Person">
       <div className="clearfix d-flex d-md-block flex-items-center mb-4 mb-md-0">

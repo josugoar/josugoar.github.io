@@ -15,21 +15,6 @@ module.exports = {
         },
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-manifest",
-    //   options: {
-    //     name: "josugoar.github.io",
-    //     short_name: "josugoar",
-    //     start_url: "/",
-    //     background_color: "#fff",
-    //     display: "standalone",
-    //     icon: "./src/images/icon.svg",
-    //     icon_options: {
-    //       purpose: "maskable",
-    //     },
-    //   },
-    // },
-    // "gatsby-plugin-offline",
     "gatsby-plugin-sass",
   ],
 }

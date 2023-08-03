@@ -1,3 +1,11 @@
+.user-profile {
+  display: flex;
+  align-items: center;
+  @media (min-width: 768px) {
+      height: 100vh;
+  }
+}
+
 .user-profile-bio {
   overflow: hidden;
   font-size: 14px;
@@ -17,5 +25,5 @@
   font-style: normal;
   font-weight: 300;
   line-height: 24px;
-  color: $text-gray;
+  color: var(--color-text-secondary);
 }

@@ -11,7 +11,7 @@ export interface PinnableItemConnectionProps {
 }
 
 const PinnableItemConnection = ({ nodes }: PinnableItemConnectionProps) => (
-  <div className="col-md-8 col-lg-7 py-4" style={{ margin: "auto" }}>
+  <div className="col-md-8" style={{ margin: "auto" }}>
     {nodes.map(({ id, ...node }) => (
       <Repository key={id} {...node} />
     ))}

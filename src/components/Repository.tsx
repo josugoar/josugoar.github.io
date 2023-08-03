@@ -27,7 +27,7 @@ const Repository = ({
   url,
   usesCustomOpenGraphImage,
 }: RepositoryProps) => (
-  <article className="border rounded-1 box-shadow bg-gray-light mb-4">
+  <article className="border rounded-1 box-shadow bg-gray-light my-4">
     {usesCustomOpenGraphImage && (
       <a
         className="overflow-hidden flex-items-center rounded-top-1 border-black-fade border-bottom d-flex position-relative"
@@ -38,6 +38,7 @@ const Repository = ({
       >
         <img
           className="d-block width-full"
+          style={{ maxHeight: 275, objectFit: "contain" }}
           loading="lazy"
           src={openGraphImageUrl}
           alt={name}
@@ -50,11 +51,11 @@ const Repository = ({
           <span
             dangerouslySetInnerHTML={{
               // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
-              __html: repo.toSVG({ class: "text-gray-dark mr-2" }),
+              __html: repo.toSVG({ class: "color-text-primary mr-2" }),
             }}
             style={{ marginTop: 2 }}
           />
-          <h1 className="f3 text-gray text-normal lh-condensed">
+          <h1 className="f3 color-text-secondary text-normal lh-condensed">
             <a
               className="text-bold"
               href={url}
@@ -79,7 +80,7 @@ const Repository = ({
           <span
             dangerouslySetInnerHTML={{
               // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
-              __html: code.toSVG({ class: "text-gray-dark" }),
+              __html: code.toSVG({ class: "color-text-primary" }),
             }}
           />{" "}
           Code
@@ -88,7 +89,7 @@ const Repository = ({
     </div>
     <div className="border-bottom bg-white">
       <div className="px-3 pt-3">
-        <p className="text-gray mb-0" />
+        <p className="color-text-secondary mb-0" />
         <div>{description}</div>
         <p />
       </div>
