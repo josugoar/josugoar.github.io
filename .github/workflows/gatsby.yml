@@ -33,7 +33,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Create .env file
-        run: echo "${{ secrets.GITHUB_TOKEN }}" >> .env
+        run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> .env
       - name: Detect package manager
         id: detect-package-manager
         run: |
