@@ -1,31 +1,12 @@
 {
-  "name": "gatsby-starter-github",
+  "name": "josugoar.github.io",
   "version": "2.2.0",
-  "keywords": [
-    "docker",
-    "es6",
-    "eslint",
-    "frontend",
-    "gatsby",
-    "gatsby-starter",
-    "gh-pages",
-    "github-api",
-    "graphql",
-    "javascript",
-    "npm",
-    "prettier",
-    "primer",
-    "react",
-    "sass",
-    "typescript",
-    "webapp"
-  ],
   "bugs": {
-    "url": "https://github.com/josugoar/gatsby-starter-github/issues"
+    "url": "https://github.com/josugoar/josugoar.github.io/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/josugoar/gatsby-starter-github"
+    "url": "https://github.com/josugoar/josugoar.github.io"
   },
   "license": "GPL-3.0",
   "author": {
