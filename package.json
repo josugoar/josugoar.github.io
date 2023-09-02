@@ -1,6 +1,13 @@
 {
   "name": "josugoar.github.io",
   "version": "2.2.0",
+  "keywords": [
+    "gatsby-starter",
+    "gh-pages",
+    "github-api",
+    "graphql",
+    "primer"
+  ],
   "bugs": {
     "url": "https://github.com/josugoar/josugoar.github.io/issues"
   },
