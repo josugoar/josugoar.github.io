@@ -2,14 +2,14 @@ import { graphql } from "gatsby"
 import React from "react"
 
 export interface UserProps {
-  avatarUrl: string
   bio: string | null
+  databaseId: number
   login: string
   name: string | null
   url: string
 }
 
-const User = ({ avatarUrl, bio, login, name, url }: UserProps) => (
+const User = ({ bio, databaseId, login, name, url }: UserProps) => (
   <div
     className="flex-shrink-0 col-12 col-md-3 pt-4 position-md-sticky user-profile"
     style={{ top: 0 }}
@@ -30,7 +30,7 @@ const User = ({ avatarUrl, bio, login, name, url }: UserProps) => (
               className="avatar avatar-user width-full border bg-white"
               style={{ height: "auto" }}
               alt={login}
-              src={avatarUrl}
+              src={`https://avatars.githubusercontent.com/u/${databaseId}?v=4`}
               width="260"
               height="260"
             />
@@ -70,8 +70,8 @@ export default User
 
 export const query = graphql`
   fragment UserFragment on GitHub_User {
-    avatarUrl
     bio
+    databaseId
     login
     name
     url
