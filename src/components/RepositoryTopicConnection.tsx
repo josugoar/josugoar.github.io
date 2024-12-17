@@ -14,8 +14,11 @@ const RepositoryTopicConnection = ({
   nodes,
 }: RepositoryTopicConnectionProps) => (
   <div className="d-flex flex-wrap border-bottom border-gray-light px-3 pt-2 pb-2">
-    {nodes.map(({ id, ...node }) => (
-      <RepositoryTopic key={id} {...node} />
+    {nodes.map(({ id, ...node }, idx) => (
+      <React.Fragment key={id}>
+        <RepositoryTopic {...node} />
+        {idx < nodes.length - 1 && "\u00A0"}
+      </React.Fragment>
     ))}
   </div>
 )
