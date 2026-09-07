@@ -12,7 +12,7 @@ export interface RepositoryTopicConnectionProps {
 const RepositoryTopicConnection = ({
   nodes,
 }: RepositoryTopicConnectionProps) => (
-  <div className="d-flex flex-wrap border-bottom border-gray-light px-3 pt-2 pb-2">
+  <div className="d-flex flex-wrap border-bottom color-border-default px-3 pt-2 pb-2">
     {nodes.map(({ id, ...node }, idx) => (
       <React.Fragment key={id}>
         <RepositoryTopic {...node} />
