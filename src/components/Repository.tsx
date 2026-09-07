@@ -26,10 +26,10 @@ const Repository = ({
   url,
   usesCustomOpenGraphImage,
 }: RepositoryProps) => (
-  <article className="border rounded-1 box-shadow bg-gray-light my-4">
+  <article className="border rounded-1 color-shadow-small color-bg-subtle my-4">
     {usesCustomOpenGraphImage && (
       <a
-        className="overflow-hidden flex-items-center rounded-top-1 border-black-fade border-bottom d-flex position-relative"
+        className="overflow-hidden flex-items-center rounded-top-1 color-border-default border-bottom d-flex position-relative"
         style={{ maxHeight: 275 }}
         href={url}
         target="_blank"
@@ -49,11 +49,11 @@ const Repository = ({
         <div className="d-flex flex-auto">
           <span
             dangerouslySetInnerHTML={{
-              __html: octicons.repo.toSVG({ class: "color-text-primary mr-2" }),
+              __html: octicons.repo.toSVG({ class: "color-fg-default mr-2" }),
             }}
             style={{ marginTop: 2 }}
           />
-          <h1 className="f3 color-text-secondary text-normal lh-condensed">
+          <h1 className="f3 color-fg-muted text-normal lh-condensed">
             <a
               className="text-bold"
               href={url}
@@ -77,16 +77,16 @@ const Repository = ({
         >
           <span
             dangerouslySetInnerHTML={{
-              __html: octicons.code.toSVG({ class: "color-text-primary" }),
+              __html: octicons.code.toSVG({ class: "color-fg-default" }),
             }}
           />{" "}
           Code
         </a>
       </nav>
     </div>
-    <div className="border-bottom bg-white">
+    <div className="border-bottom color-bg-default">
       <div className="px-3 pt-3">
-        <p className="color-text-secondary mb-0" />
+        <p className="color-fg-muted mb-0" />
         <div>{description}</div>
         <p />
       </div>

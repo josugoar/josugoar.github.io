@@ -26,7 +26,7 @@ const User = ({ bio, databaseId, login, name, url }: UserProps) => (
             rel="noopener noreferrer"
           >
             <img
-              className="avatar avatar-user width-full border bg-white"
+              className="avatar avatar-user width-full border color-bg-default"
               style={{ height: "auto" }}
               alt={login}
               src={`https://avatars.githubusercontent.com/u/${databaseId}?v=4`}
