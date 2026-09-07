@@ -19,6 +19,7 @@
     "name": "josugoar",
     "url": "https://github.com/josugoar"
   },
+  "repositories": [],
   "scripts": {
     "develop": "astro dev",
     "start": "astro dev",
