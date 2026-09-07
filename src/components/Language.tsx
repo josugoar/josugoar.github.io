@@ -1,4 +1,3 @@
-import { graphql } from "gatsby"
 import React from "react"
 
 export interface LanguageProps {
@@ -14,10 +13,3 @@ const Language = ({ color, name }: LanguageProps) => (
 )
 
 export default Language
-
-export const query = graphql`
-  fragment LanguageFragment on GitHub_Language {
-    color
-    name
-  }
-`

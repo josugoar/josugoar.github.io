@@ -1,4 +1,3 @@
-import { graphql } from "gatsby"
 import React from "react"
 
 export interface UserProps {
@@ -67,13 +66,3 @@ const User = ({ bio, databaseId, login, name, url }: UserProps) => (
 )
 
 export default User
-
-export const query = graphql`
-  fragment UserFragment on GitHub_User {
-    bio
-    databaseId
-    login
-    name
-    url
-  }
-`

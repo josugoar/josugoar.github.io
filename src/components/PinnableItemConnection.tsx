@@ -1,6 +1,5 @@
-import { graphql } from "gatsby"
 import React from "react"
-import Repository, { RepositoryProps } from "./Repository"
+import Repository, { type RepositoryProps } from "./Repository"
 
 interface RepositoryNodeProps extends RepositoryProps {
   id: string
@@ -19,14 +18,3 @@ const PinnableItemConnection = ({ nodes }: PinnableItemConnectionProps) => (
 )
 
 export default PinnableItemConnection
-
-export const query = graphql`
-  fragment PinnableItemConnectionFragment on GitHub_PinnableItemConnection {
-    nodes {
-      ... on GitHub_Repository {
-        id
-      }
-      ...RepositoryFragment
-    }
-  }
-`
