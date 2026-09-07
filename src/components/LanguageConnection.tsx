@@ -1,6 +1,5 @@
-import { graphql } from "gatsby"
 import React from "react"
-import Language, { LanguageProps } from "./Language"
+import Language, { type LanguageProps } from "./Language"
 
 interface LanguageNodeProps extends LanguageProps {
   id: string
@@ -23,12 +22,3 @@ const LanguageConnection = ({ nodes }: LanguageConnectionProps) => (
 )
 
 export default LanguageConnection
-
-export const query = graphql`
-  fragment LanguageConnectionFragment on GitHub_LanguageConnection {
-    nodes {
-      id
-      ...LanguageFragment
-    }
-  }
-`

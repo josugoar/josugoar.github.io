@@ -2,7 +2,7 @@
   "name": "josugoar.github.io",
   "version": "2.2.0",
   "keywords": [
-    "gatsby-starter",
+    "astro-starter",
     "gh-pages",
     "github-api",
     "graphql",
@@ -20,12 +20,13 @@
     "url": "https://github.com/josugoar"
   },
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "deploy": "gh-pages --dist public"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "gh-pages --dist dist",
+    "astro": "astro",
+    "check": "tsc --noEmit"
   },
   "prettier": {
     "semi": false
@@ -50,11 +51,13 @@
     ]
   },
   "dependencies": {
+    "@astrojs/react": "^4.3.0",
     "@primer/css": "^21.0.7",
     "@primer/octicons": "^19.5.0",
-    "gatsby": "^5.11.0",
-    "gatsby-plugin-sass": "^6.11.0",
-    "gatsby-source-graphql": "^5.11.0",
+    "@primer/view-components": "^0.53.4",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "astro": "^5.13.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.64.2"
@@ -67,6 +70,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.1",
     "gh-pages": "^5.0.0",
-    "prettier": "^3.0.1"
+    "prettier": "^3.0.1",
+    "typescript": "^5.0.0"
   }
 }

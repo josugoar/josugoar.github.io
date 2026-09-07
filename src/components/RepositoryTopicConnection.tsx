@@ -1,6 +1,5 @@
-import { graphql } from "gatsby"
 import React from "react"
-import RepositoryTopic, { RepositoryTopicProps } from "./RepositoryTopic"
+import RepositoryTopic, { type RepositoryTopicProps } from "./RepositoryTopic"
 
 interface RepositoryTopicNodeProps extends RepositoryTopicProps {
   id: string
@@ -24,12 +23,3 @@ const RepositoryTopicConnection = ({
 )
 
 export default RepositoryTopicConnection
-
-export const query = graphql`
-  fragment RepositoryTopicConnectionFragment on GitHub_RepositoryTopicConnection {
-    nodes {
-      id
-      ...RepositoryTopicFragment
-    }
-  }
-`

@@ -1,11 +1,10 @@
-import { code, repo } from "@primer/octicons"
-import { graphql } from "gatsby"
+import octicons from "@primer/octicons"
 import React from "react"
 import LanguageConnection, {
-  LanguageConnectionProps,
+  type LanguageConnectionProps,
 } from "./LanguageConnection"
 import RepositoryTopicConnection, {
-  RepositoryTopicConnectionProps,
+  type RepositoryTopicConnectionProps,
 } from "./RepositoryTopicConnection"
 
 export interface RepositoryProps {
@@ -50,8 +49,7 @@ const Repository = ({
         <div className="d-flex flex-auto">
           <span
             dangerouslySetInnerHTML={{
-              // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
-              __html: repo.toSVG({ class: "color-text-primary mr-2" }),
+              __html: octicons.repo.toSVG({ class: "color-text-primary mr-2" }),
             }}
             style={{ marginTop: 2 }}
           />
@@ -79,8 +77,7 @@ const Repository = ({
         >
           <span
             dangerouslySetInnerHTML={{
-              // @ts-ignore: Property 'toSVG' does not exist on type '{ name: string; keywords: string[]; heights: { "16": { width: number; path: string; }; "24": { width: number; path: string; }; }; }'
-              __html: code.toSVG({ class: "color-text-primary" }),
+              __html: octicons.code.toSVG({ class: "color-text-primary" }),
             }}
           />{" "}
           Code
@@ -100,19 +97,3 @@ const Repository = ({
 )
 
 export default Repository
-
-export const query = graphql`
-  fragment RepositoryFragment on GitHub_Repository {
-    description
-    languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
-      ...LanguageConnectionFragment
-    }
-    name
-    openGraphImageUrl
-    repositoryTopics(first: 20) {
-      ...RepositoryTopicConnectionFragment
-    }
-    url
-    usesCustomOpenGraphImage
-  }
-`

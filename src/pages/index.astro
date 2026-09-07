@@ -1,0 +1,30 @@
+---
+import PinnableItemConnection from "../components/PinnableItemConnection"
+import User from "../components/User"
+import { fetchViewer } from "../github"
+import "../styles/index.scss"
+
+const { pinnedItems, ...user } = await fetchViewer()
+const title = user.name ? `${user.login} (${user.name})` : user.login
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main>
+      <div class="container-xl px-5 px-md-4 px-lg-5">
+        <div
+          class="gutter-condensed flex-column flex-md-row d-flex mx-md-2 mx-lg-3"
+        >
+          <User {...user} />
+          <PinnableItemConnection {...pinnedItems} />
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

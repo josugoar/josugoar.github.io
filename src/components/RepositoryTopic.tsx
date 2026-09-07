@@ -1,4 +1,3 @@
-import { graphql } from "gatsby"
 import React from "react"
 
 export interface RepositoryTopicProps {
@@ -14,11 +13,3 @@ const RepositoryTopic = ({ topic: { name } }: RepositoryTopicProps) => (
 )
 
 export default RepositoryTopic
-
-export const query = graphql`
-  fragment RepositoryTopicFragment on GitHub_RepositoryTopic {
-    topic {
-      name
-    }
-  }
-`
