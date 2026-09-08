@@ -19,7 +19,26 @@
     "name": "josugoar",
     "url": "https://github.com/josugoar"
   },
-  "repositories": [],
+  "repositories": [
+    "csp",
+    "hzk65",
+    "broom",
+    "esp-ngtcp2",
+    "opensoc-blueprint",
+    "argdeco",
+    "scinet",
+    "digit-recognizer",
+    "monogp",
+    "imvoxelnet2",
+    "tc2d3d",
+    "labyrinth",
+    "cchess-lib",
+    "portaera",
+    "optibat",
+    "oracle",
+    "iparra",
+    "gatsby-starter-github"
+  ],
   "scripts": {
     "develop": "astro dev",
     "start": "astro dev",
