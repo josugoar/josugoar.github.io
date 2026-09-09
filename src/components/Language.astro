@@ -1,0 +1,16 @@
+---
+export interface LanguageProps {
+  color: string
+  name: string
+}
+
+type Props = LanguageProps
+
+const { color, name } = Astro.props
+---
+
+<span class="f6 my-1 ml-0">
+  <span class="repo-language-color" style={`background-color: ${color}`}></span>
+  {" "}
+  <span itemprop="programmingLanguage">{name}</span>
+</span>

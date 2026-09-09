@@ -1,10 +1,5 @@
-import type { PinnableItemConnectionProps } from "./components/PinnableItemConnection"
-import type { UserProps } from "./components/User"
+import type { ViewerProps } from "./components/Viewer.astro"
 import { repositories } from "../package.json"
-
-export interface ViewerProps extends UserProps {
-  pinnedItems: PinnableItemConnectionProps
-}
 
 const repositoryFragment = `
   id

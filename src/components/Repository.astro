@@ -1,0 +1,92 @@
+---
+import octicons from "@primer/octicons"
+import LanguageConnection, {
+  type LanguageConnectionProps,
+} from "./LanguageConnection.astro"
+import RepositoryTopicConnection, {
+  type RepositoryTopicConnectionProps,
+} from "./RepositoryTopicConnection.astro"
+
+export interface RepositoryProps {
+  description: string | null
+  languages: LanguageConnectionProps
+  name: string
+  openGraphImageUrl: string
+  repositoryTopics: RepositoryTopicConnectionProps
+  url: string
+  usesCustomOpenGraphImage: boolean
+}
+
+type Props = RepositoryProps
+
+const {
+  description,
+  languages,
+  name,
+  openGraphImageUrl,
+  repositoryTopics,
+  url,
+  usesCustomOpenGraphImage,
+} = Astro.props
+---
+
+<article class="border rounded-1 color-shadow-small color-bg-subtle my-4">
+  {
+    usesCustomOpenGraphImage && (
+      <a
+        class="overflow-hidden flex-items-center rounded-top-1 color-border-default border-bottom d-flex position-relative"
+        style="max-height: 275px;"
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          class="d-block width-full"
+          style="max-height: 275px; object-fit: contain;"
+          loading="lazy"
+          src={openGraphImageUrl}
+          alt={name}
+        />
+      </a>
+    )
+  }
+  <div class="px-3">
+    <div class="d-flex flex-justify-between my-3">
+      <div class="d-flex flex-auto">
+        <span
+          set:html={octicons.repo.toSVG({ class: "color-fg-default mr-2" })}
+          style="margin-top: 2px;"
+        />
+        <h1 class="f3 color-fg-muted text-normal lh-condensed">
+          <a class="text-bold" href={url} target="_blank" rel="noopener noreferrer">
+            {name}
+          </a>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="tabnav px-3 mb-0">
+    <nav class="tabnav-tabs" aria-label="Repository menu">
+      <a
+        aria-current="true"
+        href={url}
+        class="tabnav-tab f6 px-2 py-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span set:html={octicons.code.toSVG({ class: "color-fg-default" })} />
+        {" "}
+        Code
+      </a>
+    </nav>
+  </div>
+  <div class="border-bottom color-bg-default">
+    <div class="px-3 pt-3">
+      <p class="color-fg-muted mb-0"></p>
+      <div>{description}</div>
+      <p></p>
+    </div>
+    <RepositoryTopicConnection {...repositoryTopics} />
+    <LanguageConnection {...languages} />
+  </div>
+</article>

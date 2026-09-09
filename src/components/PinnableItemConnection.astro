@@ -1,0 +1,23 @@
+---
+import Repository, { type RepositoryProps } from "./Repository.astro"
+
+interface RepositoryNodeProps extends RepositoryProps {
+  id: string
+}
+
+export interface PinnableItemConnectionProps {
+  nodes: RepositoryNodeProps[]
+}
+
+type Props = PinnableItemConnectionProps
+
+const { nodes } = Astro.props
+---
+
+<div class="col-md-8" style="margin: auto;">
+  {
+    nodes.map(({ id, ...node }) => (
+      <Repository {...node} />
+    ))
+  }
+</div>

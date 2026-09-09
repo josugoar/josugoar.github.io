@@ -1,0 +1,28 @@
+---
+import RepositoryTopic, {
+  type RepositoryTopicProps,
+} from "./RepositoryTopic.astro"
+
+interface RepositoryTopicNodeProps extends RepositoryTopicProps {
+  id: string
+}
+
+export interface RepositoryTopicConnectionProps {
+  nodes: RepositoryTopicNodeProps[]
+}
+
+type Props = RepositoryTopicConnectionProps
+
+const { nodes } = Astro.props
+---
+
+<div class="d-flex flex-wrap border-bottom color-border-default px-3 pt-2 pb-2">
+  {
+    nodes.map(({ topic }, idx) => (
+      <>
+        <RepositoryTopic topic={topic} />
+        {idx < nodes.length - 1 && "\u00A0"}
+      </>
+    ))
+  }
+</div>
