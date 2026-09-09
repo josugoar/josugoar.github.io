@@ -34,15 +34,16 @@ const {
   {
     usesCustomOpenGraphImage && (
       <a
-        class="overflow-hidden flex-items-center rounded-top-1 color-border-default border-bottom d-flex position-relative"
-        style="max-height: 275px;"
+        class="overflow-hidden d-block rounded-top-1 color-border-default border-bottom"
         href={url}
         target="_blank"
         rel="noopener noreferrer"
       >
         <img
           class="d-block width-full"
-          style="max-height: 275px; object-fit: contain;"
+          style="height: auto;"
+          width="1280"
+          height="640"
           loading="lazy"
           src={openGraphImageUrl}
           alt={name}
