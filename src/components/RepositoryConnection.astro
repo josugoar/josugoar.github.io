@@ -5,11 +5,11 @@ interface RepositoryNodeProps extends RepositoryProps {
   id: string
 }
 
-export interface PinnableItemConnectionProps {
+export interface RepositoryConnectionProps {
   nodes: RepositoryNodeProps[]
 }
 
-type Props = PinnableItemConnectionProps
+type Props = RepositoryConnectionProps
 
 const { nodes } = Astro.props
 ---

@@ -1,19 +1,19 @@
 ---
-import PinnableItemConnection, {
-  type PinnableItemConnectionProps,
-} from "./PinnableItemConnection.astro"
+import RepositoryConnection, {
+  type RepositoryConnectionProps,
+} from "./RepositoryConnection.astro"
 import User, { type UserProps } from "./User.astro"
 
 export interface ViewerProps extends UserProps {
-  pinnedItems: PinnableItemConnectionProps
+  repositories: RepositoryConnectionProps
 }
 
 type Props = ViewerProps
 
-const { pinnedItems, ...user } = Astro.props
+const { repositories, ...user } = Astro.props
 ---
 
 <div class="gutter-condensed flex-column flex-md-row d-flex mx-md-2 mx-lg-3">
   <User {...user} />
-  <PinnableItemConnection {...pinnedItems} />
+  <RepositoryConnection {...repositories} />
 </div>

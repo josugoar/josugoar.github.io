@@ -1,5 +1,5 @@
 import type { ViewerProps } from "./components/Viewer.astro"
-import { repositories } from "../package.json"
+import { repositories as configuredRepositories } from "../package.json"
 
 const repositoryFragment = `
   id
@@ -26,7 +26,7 @@ const repositoryFragment = `
 `
 
 function parseRepositories(): string[] {
-  const names: string[] = repositories
+  const names: string[] = configuredRepositories
   return names
     .map((entry) => entry.trim())
     .filter((name) => name.length > 0 && !name.includes("/"))
@@ -99,7 +99,11 @@ export async function fetchViewer(): Promise<ViewerProps> {
     throw new Error(`GitHub API errors: ${JSON.stringify(errors)}`)
   }
   if (repositories.length === 0) {
-    return data.subject as ViewerProps
+    const { pinnedItems, ...subject } = data.subject
+    return {
+      ...subject,
+      repositories: pinnedItems,
+    } as ViewerProps
   }
   return {
     bio: data.subject.bio,
@@ -107,7 +111,7 @@ export async function fetchViewer(): Promise<ViewerProps> {
     login: data.subject.login,
     name: data.subject.name,
     url: data.subject.url,
-    pinnedItems: {
+    repositories: {
       nodes: repositories
         .map((_, index) => data.subject[`repo${index}`])
         .filter((repository) => repository != null),
