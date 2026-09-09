@@ -32,11 +32,12 @@ function parseRepositories(): string[] {
     .filter((name) => name.length > 0 && !name.includes("/"))
 }
 
-function buildQuery(repositories: string[]): string {
+function buildQuery(login: string | undefined, repositories: string[]): string {
+  const subject = login ? `subject: user(login: "${login}")` : "subject: viewer"
   if (repositories.length === 0) {
     return `
       query {
-        viewer {
+        ${subject} {
           bio
           databaseId
           login
@@ -55,7 +56,7 @@ function buildQuery(repositories: string[]): string {
   }
   return `
     query {
-      viewer {
+      ${subject} {
         bio
         databaseId
         login
@@ -77,8 +78,9 @@ export async function fetchViewer(): Promise<ViewerProps> {
   if (!token) {
     throw new Error("Missing GITHUB_TOKEN environment variable")
   }
+  const login = import.meta.env.GITHUB_LOGIN || undefined
   const repositories = parseRepositories()
-  const query = buildQuery(repositories)
+  const query = buildQuery(login, repositories)
   const response = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers: {
@@ -97,17 +99,17 @@ export async function fetchViewer(): Promise<ViewerProps> {
     throw new Error(`GitHub API errors: ${JSON.stringify(errors)}`)
   }
   if (repositories.length === 0) {
-    return data.viewer as ViewerProps
+    return data.subject as ViewerProps
   }
   return {
-    bio: data.viewer.bio,
-    databaseId: data.viewer.databaseId,
-    login: data.viewer.login,
-    name: data.viewer.name,
-    url: data.viewer.url,
+    bio: data.subject.bio,
+    databaseId: data.subject.databaseId,
+    login: data.subject.login,
+    name: data.subject.name,
+    url: data.subject.url,
     pinnedItems: {
       nodes: repositories
-        .map((_, index) => data.viewer[`repo${index}`])
+        .map((_, index) => data.subject[`repo${index}`])
         .filter((repository) => repository != null),
     },
   }
