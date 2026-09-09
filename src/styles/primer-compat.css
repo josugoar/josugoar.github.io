@@ -1,7 +1,3 @@
-// Compatibility styles for Primer CSS components removed in v22.
-// Rules copied from @primer/css v21 with functional token names.
-// Values verified against the live site computed styles.
-
 .avatar {
   background-color: var(--bgColor-default);
   border-radius: var(--borderRadius-medium, 6px);
