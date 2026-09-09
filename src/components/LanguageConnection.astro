@@ -1,0 +1,27 @@
+---
+import Language, { type LanguageProps } from "./Language.astro"
+
+interface LanguageNodeProps extends LanguageProps {
+  id: string
+}
+
+export interface LanguageConnectionProps {
+  nodes: LanguageNodeProps[]
+}
+
+type Props = LanguageConnectionProps
+
+const { nodes } = Astro.props
+---
+
+<div class="p-3">
+  <ul class="d-flex flex-wrap f6 list-style-none color-fg-muted">
+    {
+      nodes.map(({ id, ...node }) => (
+        <li class="mb-2 mr-4">
+          <Language {...node} />
+        </li>
+      ))
+    }
+  </ul>
+</div>

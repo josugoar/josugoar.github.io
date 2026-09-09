@@ -56,36 +56,26 @@
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
       "sourceType": "module"
     },
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
-      "plugin:react/recommended",
       "plugin:prettier/recommended"
     ]
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.5",
     "@primer/css": "^22.3.0",
     "@primer/octicons": "^19.34.0",
     "astro": "^7.3.1",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
     "sass": "^1.104.0"
   },
   "devDependencies": {
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
     "@typescript-eslint/eslint-plugin": "^8.70.0",
     "@typescript-eslint/parser": "^8.70.0",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",
-    "eslint-plugin-react": "^7.37.5",
     "gh-pages": "^6.3.0",
     "prettier": "^3.9.6",
     "typescript": "^5.9.3"

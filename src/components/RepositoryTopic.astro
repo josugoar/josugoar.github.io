@@ -1,0 +1,15 @@
+---
+export interface RepositoryTopicProps {
+  topic: {
+    name: string
+  }
+}
+
+type Props = RepositoryTopicProps
+
+const {
+  topic: { name },
+} = Astro.props
+---
+
+<span class="topic-tag f6 mb-2" title={`Topic: ${name}`}>{name}</span>
