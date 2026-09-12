@@ -13,7 +13,19 @@ type Props = ViewerProps
 const { repositories, ...user } = Astro.props
 ---
 
-<div class="gutter-spacious flex-column flex-md-row d-flex flex-md-justify-center mx-md-2 mx-lg-3" style="column-gap: var(--base-size-32, 32px);">
+<div class="gutter-spacious flex-column flex-md-row d-flex flex-md-justify-center mx-md-2 mx-lg-3 viewer-column-gap">
   <User {...user} />
   <RepositoryConnection {...repositories} />
 </div>
+
+<style>
+  .viewer-column-gap {
+    column-gap: var(--base-size-32, 32px);
+  }
+
+  @media (min-width: 1280px) {
+    .viewer-column-gap {
+      column-gap: var(--base-size-64, 64px);
+    }
+  }
+</style>
