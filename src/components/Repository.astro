@@ -91,3 +91,49 @@ const {
     <LanguageConnection {...languages} />
   </div>
 </article>
+
+<style>
+  .tabnav {
+    border-bottom: var(--borderWidth-thin, 1px) solid var(--borderColor-default);
+    margin-bottom: var(--stack-gap-normal, 16px);
+    margin-top: 0;
+  }
+
+  .tabnav-tabs {
+    display: flex;
+    margin-bottom: calc(var(--borderWidth-thin, 1px) * -1);
+    overflow: auto;
+  }
+
+  .tabnav-tab {
+    background-color: transparent;
+    border: var(--borderWidth-thin, 1px) solid transparent;
+    border-bottom: 0;
+    color: var(--fgColor-muted);
+    display: inline-block;
+    flex-shrink: 0;
+    font-size: var(--text-body-size-medium, 14px);
+    line-height: 23px;
+    padding: var(--base-size-8, 8px) var(--control-medium-paddingInline-spacious, 16px);
+    text-decoration: none;
+  }
+
+  .tabnav-tab.selected,
+  .tabnav-tab[aria-current]:not([aria-current="false"]),
+  .tabnav-tab[aria-selected="true"] {
+    background-color: var(--bgColor-default);
+    border-color: var(--borderColor-default);
+    border-radius: var(--borderRadius-medium, 6px) var(--borderRadius-medium, 6px) 0 0;
+    color: var(--fgColor-default);
+  }
+
+  .tabnav-tab:hover {
+    color: var(--fgColor-default);
+    text-decoration: none;
+  }
+
+  .tabnav-tab :global(.octicon) {
+    color: var(--fgColor-muted);
+    margin-right: var(--control-small-gap, 4px);
+  }
+</style>

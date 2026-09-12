@@ -60,3 +60,59 @@ const { bio, databaseId, login, name, url } = Astro.props
     </div>
   </div>
 </div>
+
+<style>
+  .avatar {
+    background-color: var(--bgColor-default);
+    border-radius: var(--borderRadius-medium, 6px);
+    box-shadow: 0 0 0 1px var(--borderColor-default);
+    display: inline-block;
+    flex-shrink: 0;
+    line-height: 1;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+
+  .avatar-user {
+    border-radius: 50% !important;
+  }
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .user-profile {
+      height: 100vh;
+    }
+  }
+
+  .user-profile-bio {
+    overflow: hidden;
+    font-size: 14px;
+  }
+
+  .vcard-names {
+    line-height: 1;
+  }
+
+  .vcard-fullname {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .vcard-username {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--color-text-secondary);
+  }
+
+  .vcard-names-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+</style>

@@ -2,7 +2,6 @@
 import Viewer from "../components/Viewer.astro"
 import { fetchViewer } from "../github"
 import "@primer/css/dist/primer.css"
-import "../styles/index.css"
 
 const viewer = await fetchViewer()
 const title = viewer.name
