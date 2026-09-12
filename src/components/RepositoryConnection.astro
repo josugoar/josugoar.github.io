@@ -14,7 +14,7 @@ type Props = RepositoryConnectionProps
 const { nodes } = Astro.props
 ---
 
-<div class="col-md-8" style="margin: auto; max-width: 700px;">
+<div class="col-md-8 mx-auto mx-md-0" style="max-width: 640px;">
   {
     nodes.map(({ id, ...node }) => (
       <Repository {...node} />
