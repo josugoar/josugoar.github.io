@@ -1,120 +1,87 @@
-import type { ViewerProps } from "./components/Viewer.astro"
-import { repositories as configuredRepositories } from "../package.json"
+import type { ViewerProps } from "./components/Viewer.astro";
+import { repositories } from "../package.json";
 
-const repositoryFragment = `
-  id
-  description
-  languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
-    nodes {
-      id
-      color
-      name
-    }
-  }
-  name
-  openGraphImageUrl
-  repositoryTopics(first: 20) {
-    nodes {
-      id
-      topic {
-        name
-      }
-    }
-  }
-  url
-  usesCustomOpenGraphImage
-`
+export async function fetchViewer(): Promise<ViewerProps> {
+  const githubToken = import.meta.env.GITHUB_TOKEN;
+  const githubLogin = import.meta.env.GITHUB_LOGIN;
 
-function parseRepositories(): string[] {
-  const names: string[] = configuredRepositories
-  return names
-    .map((entry) => entry.trim())
-    .filter((name) => name.length > 0 && !name.includes("/"))
-}
-
-function buildQuery(login: string | undefined, repositories: string[]): string {
-  const subject = login ? `subject: user(login: "${login}")` : "subject: viewer"
-  if (repositories.length === 0) {
-    return `
-      query {
-        ${subject} {
-          bio
-          databaseId
-          login
-          name
-          url
-          pinnedItems(first: 6, types: REPOSITORY) {
-            nodes {
-              ... on Repository {
-                ${repositoryFragment}
-              }
-            }
-          }
-        }
-      }
-    `
+  if (!githubToken) {
+    throw new Error("Missing GITHUB_TOKEN environment variable");
   }
-  return `
+
+  const query = `
     query {
-      ${subject} {
+      viewer: ${githubLogin ? `user(login: "${githubLogin}")` : "viewer"} {
         bio
         databaseId
         login
         name
         url
-        ${repositories
+        ${(repositories as string[])
           .map(
-            (name, index) =>
-              `repo${index}: repository(name: "${name}") { ${repositoryFragment} }`,
+            (name, idx) => `repository${idx}: repository(name: "${name}") {
+            id
+            description
+            languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
+              nodes {
+                id
+                color
+                name
+              }
+            }
+            name
+            openGraphImageUrl
+            repositoryTopics(first: 20) {
+              nodes {
+                id
+                topic {
+                  name
+                }
+              }
+            }
+            url
+            usesCustomOpenGraphImage
+          }`,
           )
           .join("\n")}
       }
     }
-  `
-}
+  `;
 
-export async function fetchViewer(): Promise<ViewerProps> {
-  const token = import.meta.env.GITHUB_TOKEN
-  if (!token) {
-    throw new Error("Missing GITHUB_TOKEN environment variable")
-  }
-  const login = import.meta.env.GITHUB_LOGIN || undefined
-  const repositories = parseRepositories()
-  const query = buildQuery(login, repositories)
   const response = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${githubToken}`,
     },
     body: JSON.stringify({ query }),
-  })
+  });
+
   if (!response.ok) {
     throw new Error(
       `GitHub API request failed: ${response.status} ${response.statusText}`,
-    )
+    );
   }
-  const { data, errors } = await response.json()
+
+  const { data, errors } = await response.json();
+
   if (errors) {
-    throw new Error(`GitHub API errors: ${JSON.stringify(errors)}`)
+    throw new Error(`GitHub API errors: ${JSON.stringify(errors)}`);
   }
-  if (repositories.length === 0) {
-    const { pinnedItems, ...subject } = data.subject
-    return {
-      ...subject,
-      repositories: pinnedItems,
-    } as ViewerProps
-  }
+
+  const { bio, databaseId, login, name, url, ...repositoryConnection } =
+    data.viewer;
+
+  const repositoryNodes = Object.values(repositoryConnection).filter(
+    (repository) => repository != null,
+  );
+
   return {
-    bio: data.subject.bio,
-    databaseId: data.subject.databaseId,
-    login: data.subject.login,
-    name: data.subject.name,
-    url: data.subject.url,
-    repositories: {
-      nodes: repositories
-        .map((_, index) => data.subject[`repo${index}`])
-        .filter((repository) => repository != null),
-    },
-  }
+    bio,
+    databaseId,
+    login,
+    name,
+    url,
+    repositories: { nodes: repositoryNodes },
+  };
 }
