@@ -1,12 +1,12 @@
-import type { ViewerProps } from "./components/Viewer.astro";
-import { repositories } from "../package.json";
+import type { ViewerProps } from "./components/Viewer.astro"
+import { repositories } from "../package.json"
 
 export async function fetchViewer(): Promise<ViewerProps> {
-  const githubToken = import.meta.env.GITHUB_TOKEN;
-  const githubLogin = import.meta.env.GITHUB_LOGIN;
+  const githubToken = import.meta.env.GITHUB_TOKEN
+  const githubLogin = import.meta.env.GITHUB_LOGIN
 
   if (!githubToken) {
-    throw new Error("Missing GITHUB_TOKEN environment variable");
+    throw new Error("Missing GITHUB_TOKEN environment variable")
   }
 
   const query = `
@@ -46,7 +46,7 @@ export async function fetchViewer(): Promise<ViewerProps> {
           .join("\n")}
       }
     }
-  `;
+  `
 
   const response = await fetch("https://api.github.com/graphql", {
     method: "POST",
@@ -55,26 +55,26 @@ export async function fetchViewer(): Promise<ViewerProps> {
       Authorization: `Bearer ${githubToken}`,
     },
     body: JSON.stringify({ query }),
-  });
+  })
 
   if (!response.ok) {
     throw new Error(
       `GitHub API request failed: ${response.status} ${response.statusText}`,
-    );
+    )
   }
 
-  const { data, errors } = await response.json();
+  const { data, errors } = await response.json()
 
   if (errors) {
-    throw new Error(`GitHub API errors: ${JSON.stringify(errors)}`);
+    throw new Error(`GitHub API errors: ${JSON.stringify(errors)}`)
   }
 
   const { bio, databaseId, login, name, url, ...repositoryConnection } =
-    data.viewer;
+    data.viewer
 
   const repositoryNodes = Object.values(repositoryConnection).filter(
     (repository) => repository != null,
-  );
+  )
 
   return {
     bio,
@@ -83,5 +83,5 @@ export async function fetchViewer(): Promise<ViewerProps> {
     name,
     url,
     repositories: { nodes: repositoryNodes },
-  };
+  }
 }
